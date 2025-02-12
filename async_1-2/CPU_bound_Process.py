@@ -7,42 +7,18 @@ def countdown():
     while i < 5_000_000:
         i += 1
 
+process_list = []
 
 if __name__ == '__main__':
     start_time = time.time()
 
-    thread1 = Process(target=countdown)
-    thread2 = Process(target=countdown)
-    thread3 = Process(target=countdown)
-    thread4 = Process(target=countdown)
-    thread5 = Process(target=countdown)
-    thread6 = Process(target=countdown)
-    thread7 = Process(target=countdown)
-    thread8 = Process(target=countdown)
-    thread9 = Process(target=countdown)
-    thread10 = Process(target=countdown)
+    for i in range(10):
+        process = Process(target=countdown)
+        process_list.append(process)
 
-    thread1.start()
-    thread2.start()
-    thread3.start()
-    thread4.start()
-    thread5.start()
-    thread6.start()
-    thread7.start()
-    thread8.start()
-    thread9.start()
-    thread10.start()
-
-    thread1.join()
-    thread2.join()
-    thread3.join()
-    thread4.join()
-    thread5.join()
-    thread6.join()
-    thread7.join()
-    thread8.join()
-    thread9.join()
-    thread10.join()
+    for process in process_list:
+        process.start()
+        process.join()
 
     end_time = time.time()
 
