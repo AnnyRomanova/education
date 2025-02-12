@@ -17,9 +17,9 @@ if __name__ == '__main__':
     for i in range(10):
         process = Process(target=make_request)
         process_list.append(process)
+        process.start()
 
     for process in process_list:
-        process.start()
         process.join()
 
     end_time = time.time()
