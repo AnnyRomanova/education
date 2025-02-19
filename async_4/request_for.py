@@ -14,6 +14,4 @@ for url in url_list:
     response = requests.get(url)
     print(response.status_code)
 
-end = time.time()
-
-print(f'Время выполнения через requests: {end - start}')
+print(f'Время выполнения через requests: {time.time() - start}')

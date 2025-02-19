@@ -28,6 +28,4 @@ if __name__ == "__main__":
     for thread in thread_list:
         thread.join()
 
-    end = time.time()
-
-print(f'Время выполнения через requests и потоки: {end - start}')
+print(f'Время выполнения через requests и потоки: {time.time() - start}')

@@ -17,11 +17,10 @@ async def async_http(url):
 
 
 async def main():
+    start = time.time()
     await asyncio.gather(*(async_http(url) for url in url_list))
+    print(f"Время выполнения через asyncio {time.time() - start}")
 
 
 if __name__ == "__main__":
-    start = time.time()
     asyncio.run(main())
-    end = time.time()
-    print(f"Время выполнения через asyncio {end - start}")
