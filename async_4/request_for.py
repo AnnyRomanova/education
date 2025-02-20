@@ -8,10 +8,14 @@ url_list = ["https://httpbin.org/json",
             "https://httpbin.org/ip",
             "https://httpbin.org/get"]
 
-start = time.time()
 
-for url in url_list:
-    response = requests.get(url)
-    print(response.status_code)
+def request_for(list_url):
+    start = time.time()
+    for url in list_url:
+        response = requests.get(url)
+        print(response.status_code)
+    print(f'Время выполнения через requests: {time.time() - start}')
 
-print(f'Время выполнения через requests: {time.time() - start}')
+
+if __name__ == "__main__":
+    request_for(url_list)
