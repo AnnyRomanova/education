@@ -1,7 +1,6 @@
 import asyncio
 import datetime
 import requests
-from concurrent.futures import ThreadPoolExecutor
 
 
 def blocking_task():
@@ -9,10 +8,11 @@ def blocking_task():
     requests.get('https://docs.python.org/3/')
 
 
-async def async_thread_worker(event_loop):
+async def async_thread_worker():
     print("Запущен отдельный поток с блокирующей функцией")
-    with ThreadPoolExecutor() as executor:
-        await event_loop.run_in_executor(executor, blocking_task)
+    loop = asyncio.get_event_loop()
+    while True:
+        await loop.run_in_executor(None, blocking_task)
 
 
 async def ticker():
@@ -25,5 +25,5 @@ async def ticker():
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     loop.create_task(ticker())
-    loop.create_task(async_thread_worker(loop))
+    loop.create_task(async_thread_worker())
     loop.run_forever()
